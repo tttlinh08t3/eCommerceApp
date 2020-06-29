@@ -1,0 +1,168 @@
+.full-header-container {
+    background-color: #fff;
+    position: sticky;
+    z-index: 1030;
+    top:0;
+    right: 0;
+    left: 0;
+}
+
+.header-container {
+    display: flex;
+}
+
+.search-form{
+    flex: 1;
+    height: 40px;
+}
+
+.logo{
+    margin-left: -0.2cm;
+    margin-right: 0.2cm;
+}
+
+.logo img{
+    height: 50px;
+    width: auto;
+    max-width: 100%;
+}
+
+.header-btn-group {
+    margin-left: 0.5cm;
+    margin-top: 0.1cm;
+}
+
+.customized-navbar {
+    justify-content: center;
+}
+
+.customized-nav .nav-item {
+    margin-right: 0.2cm;
+}
+
+.customized-nav >li >a {
+    color: #fff;
+} 
+
+.nav-mobile-container {
+    display: none !important;
+}
+
+.nav-mobile-container .fa-md {
+    color: rgba(255,255,255,.5);
+}
+
+.search-container-mobile .form-container, .search-container-mobile .input-group, .search-container-mobile .form-control {
+    height: 100%;
+}
+
+.landing {
+    /* background-image: url(../images/home.jpg); */
+    background-repeat: no-repeat;
+    background-position: center;  
+    min-height: 600px;
+}
+
+.card-price {
+    color: #00008B;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.menu-footer{
+    list-style: none;
+}
+
+.menu-footer > li >a{
+    color:#fff;
+}
+
+.col-f-mb {
+    display: none;
+    padding: 0;
+}
+
+.col-f-mb .menu-footer {
+    padding: 0;
+}
+
+.col-f-mb .bi-plus-circle {
+    color: #fff;
+}
+
+.plus-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.col-t-mb {
+    display: flex;
+}
+
+.col-t-ep {
+    flex: 1;
+}
+
+.collapsible {
+    width: 100%;
+}
+  
+.collapsible:after {
+    content: '\002B';
+    color: white;
+    font-weight: bold;
+    font-size: 24px;
+    float: right;
+    margin-top: -9px;
+}
+
+.category-img {
+    width: 100%;
+    max-height: 300px;
+}
+
+.product-img {
+    width: 100%;
+    max-height: 230px;
+}
+
+@media only screen and (max-width: 767px)  {
+    .col-f-w {
+        display: none;
+    }
+    .col-f-mb {
+        display: block;
+        margin-left: 1.0cm;
+        margin-right: 1.0cm;
+        padding: 5px 10px 0 10px;
+    }
+    .col-f-mb:hover{
+        border: 1px solid #ccc; 
+    }
+}    
+
+@media only screen and (max-width: 991px)  {
+    .header-container {
+        display: none;
+    }
+    .nav-mobile-container {
+        display: flex !important;
+    }
+    .nav-mobile-container .fa-md {
+        font-size: 1.5em;
+    }
+}  
+
+@media only screen and (max-width: 575px)  {
+    .navbar-toggler .navbar-toggler-icon {
+        width: 1em;
+        width: 1em;
+    }
+    .nav-mobile-container .fa-md {
+        font-size: 1em;
+    }
+    .nav-mobile-container .logo img {
+        height: 37px;
+    }
+}    

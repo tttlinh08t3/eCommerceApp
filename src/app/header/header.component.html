@@ -1,0 +1,68 @@
+<div class="full-header-container">
+    <header>
+        <div class="container header-container mt-3 py-2">
+            <div class="logo">
+                <a href="/"><img src="../../assets/img/logo.png" alt="Furniture"></a>
+            </div>
+            <div class="search-form" >
+                <form class="form my-1" action="">
+                    <div class="input-group mb-3">
+                        <input type="search" class="form-control" placeholder="Search.." aria-label="Search" name="search">
+                        <div class="input-group-append">
+                            <button class="btn input-group-text" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="header-btn-group">
+                <a href="" class="btn"><i class="fa fa-shopping-cart fa-lg"></i></a>
+                <button class="btn"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></button>
+                <a routerLink="/auth" *ngIf="!isAuthenticated" class="btn"><i class="fa fa-sign-in fa-lg"></i></a>
+                <div *ngIf="isAuthenticated">
+                    Welcome {{user.email}}
+                    <button class="btn"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+                </div> 
+                
+            </div>
+        </div>
+    </header>   
+
+    <nav class="navbar navbar-expand-lg navbar-dark flex-column flex-md-row bg-primary">
+        <!-- Navbar -->
+        <div class="nav-mobile-container container">
+            <div class="logo"> 
+            <a href="/"><img src="../../assets/img/logo.png" alt="Furniture"></a>
+            </div>
+            <div class="search-form search-container-mobile">
+                <form class="form-container" action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search.." aria-label="Search" name="search">
+                        <div class="input-group-append">
+                            <button class="btn input-group-text" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="header-btn-group">
+                <a href="" class="btn"><i class="fa fa-shopping-cart fa-md"></i></a>
+                <button class="btn"><i class="fa fa-map-marker fa-md" aria-hidden="true"></i></button>
+                <button class="btn"><i class="fa fa-sign-in fa-md" aria-hidden="true"></i></button>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+            aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <!-- <div class="collapse navbar-collapse customized-navbar" id="navbarToggler">
+            <ul class="nav nav-pills nav-fill customized-nav">
+                {% for category in categories%}
+                <li class="nav-item">
+                    <a href="{{ url_for('main.category', categoryid=category.id) }}" class="nav-link" href="#">{{category.name}}<span class="sr-only">(current)</span></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div> -->
+    </nav>
+</div>
