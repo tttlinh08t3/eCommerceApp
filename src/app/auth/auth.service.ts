@@ -7,10 +7,9 @@ import { AuthResponse } from './auth.model';
 import { EMAIL_EXISTS, OPERATION_NOT_ALLOWED, TOO_MANY_ATTEMPTS_TRY_LATER, EMAIL_NOT_FOUND, INVALID_PASSWORD, USER_DISABLED } from '../shared/error.message';
 import { User } from './user.model';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class AuthService {
     user = new BehaviorSubject<User>(null);
-    token: string = null;
 
     constructor(private http: HttpClient) {}
     API_KEY = 'AIzaSyCpLRsj_CAQSaxMDL1IXfpSjryazwL7URw';
@@ -22,13 +21,15 @@ export class AuthService {
                 email,
                 password,
                 returnSecureToken : true
-            }).pipe(catchError(this.handleError), tap(resData => {
-                this.handleAuthentication(
-                    resData.email,
-                    resData.localId,
-                    resData.idToken,
-                    +resData.expiresIn
-                );
+            }).pipe(
+                catchError(this.handleError),
+                tap(resData => {
+                    this.handleAuthentication(
+                        resData.email,
+                        resData.localId,
+                        resData.idToken,
+                        +resData.expiresIn
+                    );
             }));
     }
 
@@ -39,13 +40,15 @@ export class AuthService {
                 email,
                 password,
                 returnSecureToken : true
-            }).pipe(catchError(this.handleError), tap(resData => {
-                this.handleAuthentication(
-                    resData.email,
-                    resData.localId,
-                    resData.idToken,
-                    +resData.expiresIn
-                );
+            }).pipe(
+                catchError(this.handleError),
+                tap(resData => {
+                    this.handleAuthentication(
+                        resData.email,
+                        resData.localId,
+                        resData.idToken,
+                        +resData.expiresIn
+                    );
             }));
     }
 
@@ -58,6 +61,7 @@ export class AuthService {
             expirationDate
         );
         this.user.next(user);
+        console.log('auth: this.user', this.user);
     }
     private handleError(errorRes: HttpErrorResponse) {
         let errorMessage = 'An unknown error occurred';

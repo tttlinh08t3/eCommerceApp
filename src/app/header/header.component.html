@@ -20,7 +20,8 @@
                 <button class="btn"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></button>
                 <a routerLink="/auth" *ngIf="!isAuthenticated" class="btn"><i class="fa fa-sign-in fa-lg"></i></a>
                 <div *ngIf="isAuthenticated">
-                    Welcome {{user.email}}
+                    Welcome 
+                    {{user.email}}
                     <button class="btn"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
                 </div> 
                 
@@ -47,7 +48,12 @@
             <div class="header-btn-group">
                 <a href="" class="btn"><i class="fa fa-shopping-cart fa-md"></i></a>
                 <button class="btn"><i class="fa fa-map-marker fa-md" aria-hidden="true"></i></button>
-                <button class="btn"><i class="fa fa-sign-in fa-md" aria-hidden="true"></i></button>
+                <a routerLink="/auth" *ngIf="!isAuthenticated" class="btn"><i class="fa fa-sign-in fa-lg"></i></a>
+                <div *ngIf="isAuthenticated">
+                    Welcome 
+                    {{user.email}}
+                    <button class="btn"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+                </div>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
             aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,14 +61,5 @@
             </button>
         </div>
 
-        <!-- <div class="collapse navbar-collapse customized-navbar" id="navbarToggler">
-            <ul class="nav nav-pills nav-fill customized-nav">
-                {% for category in categories%}
-                <li class="nav-item">
-                    <a href="{{ url_for('main.category', categoryid=category.id) }}" class="nav-link" href="#">{{category.name}}<span class="sr-only">(current)</span></a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div> -->
     </nav>
 </div>

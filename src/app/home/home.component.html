@@ -1,3 +1,24 @@
-<!-- <app-header></app-header>
-<router-outlet></router-outlet> -->
 <div>HOME</div>
+<div class="container ">
+    <div class="landing mt-5 mb-5">
+    </div>
+
+    <div class="text-center">
+        <div class="top-product-heading">Shop by category</div>
+    </div>
+    
+    <button class="btn btn-primary" type="button" (click)="fetch()">Fetch</button>
+
+    <div class="row py-1 mt-2" *ngFor="let product of products; let i = index" >
+        <div class="col-md-6 product">
+                <article class="card mb-4 shadow-sm">
+                    <img class="card-img-top category-img" src="{{ product.image }}" class="d-block w-100" alt="Card Image">
+                    <div class="card-body text-center">
+                        <a href="">
+                        </a>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ product.description }}</h6>
+                    </div>
+                </article>
+        </div> 
+    </div>
+</div> 

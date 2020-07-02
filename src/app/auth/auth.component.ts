@@ -8,9 +8,9 @@ import { Location } from '@angular/common';
 })
 export class AuthComponent implements OnInit {
   constructor(private router: Router, private location: Location, private activatedRoute: ActivatedRoute) {
-        // if (!this.location.path() || this.location.path() === '/auth') {
+        if (!this.location.path() || this.location.path() === '/auth') {
             this.router.navigate(['login'], { relativeTo: this.activatedRoute });
-        // }
+        }
   }
 
   ngOnInit() {

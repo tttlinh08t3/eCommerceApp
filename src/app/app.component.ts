@@ -9,8 +9,5 @@ import { Location } from '@angular/common';
 })
 export class AppComponent {
     constructor(private router: Router, private location: Location, private activatedRoute: ActivatedRoute) {
-        // if (!this.location.path() || this.location.path() === '') {
-        //     this.router.navigate(['home'], { relativeTo: this.activatedRoute });
-        // }
   }
 }

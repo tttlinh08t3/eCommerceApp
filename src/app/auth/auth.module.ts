@@ -5,6 +5,8 @@ import { AuthComponent } from './auth.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthService } from './auth.service';
 import { SignupComponent } from './signup/signup.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorService } from './auth-interceptor.service';
 
 @NgModule({
     declarations: [
@@ -17,7 +19,6 @@ import { SignupComponent } from './signup/signup.component';
         SharedModule
     ],
     providers: [
-        AuthService
     ],
     exports: [
     ]
