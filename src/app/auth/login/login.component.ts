@@ -1,10 +1,9 @@
 
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthResponse } from '../auth.model';
+
+import { AuthService } from '../auth.service';
 
 @Component({
     selector: 'app-login',

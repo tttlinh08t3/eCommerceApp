@@ -32,6 +32,8 @@
     margin-top: 0.1cm;
 }
 
+
+
 .customized-navbar {
     justify-content: center;
 }
@@ -164,5 +166,12 @@
     }
     .nav-mobile-container .logo img {
         height: 37px;
+    }
+    .header-btn-group {
+        margin-left: 0cm;
+    }
+    .custom-dropdown-btn {
+        margin-left: -0.5cm;
+        margin-right: -0.5cm;
     }
 }    

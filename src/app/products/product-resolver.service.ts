@@ -5,7 +5,6 @@ import { Product } from './product.model';
 import { DataStorageService } from '../shared/data-storage.service';
 import { ProductService } from './product.service';
 
-@Injectable({providedIn: 'root'})
 export class ProductResolverService implements Resolve<Product[]> {
     constructor(private dataStorageService: DataStorageService, private productService: ProductService) {}
 

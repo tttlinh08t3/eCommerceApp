@@ -1,12 +1,8 @@
-<div>HOME</div>
 <div class="container ">
     <div class="landing mt-5 mb-5">
     </div>
+    <router-outlet></router-outlet>
 
-    <div class="text-center">
-        <div class="top-product-heading">Shop by category</div>
-    </div>
-    
     <button class="btn btn-primary" type="button" (click)="fetch()">Fetch</button>
 
     <div class="row py-1 mt-2" *ngFor="let product of products; let i = index" >

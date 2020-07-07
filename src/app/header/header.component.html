@@ -19,12 +19,15 @@
                 <a href="" class="btn"><i class="fa fa-shopping-cart fa-lg"></i></a>
                 <button class="btn"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></button>
                 <a routerLink="/auth" *ngIf="!isAuthenticated" class="btn"><i class="fa fa-sign-in fa-lg"></i></a>
-                <div *ngIf="isAuthenticated">
-                    Welcome 
-                    {{user.email}}
-                    <button class="btn"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+
+                <div *ngIf="isAuthenticated" class="dropdown btn">
+                    <a class="nav-link dropdown-toggle btn custom-dropdown-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Welcome  {{user.email}}</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">My Account</a>
+                        <a class="dropdown-item" style="cursor: pointer;" (click)="onLogout()">Logout  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                    </div>
                 </div> 
-                
             </div>
         </div>
     </header>   
@@ -48,12 +51,17 @@
             <div class="header-btn-group">
                 <a href="" class="btn"><i class="fa fa-shopping-cart fa-md"></i></a>
                 <button class="btn"><i class="fa fa-map-marker fa-md" aria-hidden="true"></i></button>
-                <a routerLink="/auth" *ngIf="!isAuthenticated" class="btn"><i class="fa fa-sign-in fa-lg"></i></a>
-                <div *ngIf="isAuthenticated">
-                    Welcome 
-                    {{user.email}}
-                    <button class="btn"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
-                </div>
+                <a routerLink="/auth" *ngIf="!isAuthenticated" class="btn "><i class="fa fa-sign-in fa-md"></i></a>
+                
+
+                <div *ngIf="isAuthenticated" class="dropdown btn">
+                    <a class="nav-link dropdown-toggle btn custom-dropdown-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Hi {{user.email}}</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">My Account</a>
+                        <a class="dropdown-item" style="cursor: pointer;" (click)="onLogout()">Logout  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                    </div>
+                </div> 
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
             aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">

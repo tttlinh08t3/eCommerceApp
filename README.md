@@ -1,4 +1,10 @@
 # ECommerceApp
+Create a ready sample Angular app with a code structure and pre-built template as below:
+- Set up Lazy Loading for different modules
+- Set up Authentication and Route Protection
+- Set up NgRx for project
+- Build logging service and loading spinner
+- Set up to load service in different environments
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
 
