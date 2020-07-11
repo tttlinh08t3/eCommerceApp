@@ -9,7 +9,6 @@ import { AuthGuard } from '../auth/auth.guard';
 const authRoutes: Routes = [
     {
         path: '', component: HomeComponent,
-        resolve: [ProductResolverService],
         children: [
             {
                 path: 'my-account', component: MyAccountComponent,

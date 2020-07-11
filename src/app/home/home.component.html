@@ -3,18 +3,4 @@
     </div>
     <router-outlet></router-outlet>
 
-    <button class="btn btn-primary" type="button" (click)="fetch()">Fetch</button>
-
-    <div class="row py-1 mt-2" *ngFor="let product of products; let i = index" >
-        <div class="col-md-6 product">
-                <article class="card mb-4 shadow-sm">
-                    <img class="card-img-top category-img" src="{{ product.image }}" class="d-block w-100" alt="Card Image">
-                    <div class="card-body text-center">
-                        <a href="">
-                        </a>
-                        <h6 class="card-subtitle mb-2 text-muted">{{ product.description }}</h6>
-                    </div>
-                </article>
-        </div> 
-    </div>
 </div> 

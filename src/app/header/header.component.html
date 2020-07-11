@@ -24,7 +24,7 @@
                     <a class="nav-link dropdown-toggle btn custom-dropdown-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Welcome  {{user.email}}</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">My Account</a>
+                        <a class="dropdown-item" routerLink="/my-account">My Account</a>
                         <a class="dropdown-item" style="cursor: pointer;" (click)="onLogout()">Logout  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
                     </div>
                 </div> 
@@ -58,7 +58,7 @@
                     <a class="nav-link dropdown-toggle btn custom-dropdown-btn" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Hi {{user.email}}</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">My Account</a>
+                        <a class="dropdown-item" routerLink="/my-account">My Account</a>
                         <a class="dropdown-item" style="cursor: pointer;" (click)="onLogout()">Logout  <i class="fa fa-sign-out" aria-hidden="true"></i></a>
                     </div>
                 </div> 

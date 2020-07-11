@@ -6,29 +6,31 @@
 <div *ngIf="isLoading" style="text-align: center">
     <app-loading-spinner></app-loading-spinner>
 </div>
-<div class="row" >
-    <div class="col-xs-12 col-md-6 col-md-offset-3">
-        <div style="color: brown">SIGN UP</div>
-        <br>
-        <br>
-        <div class="alert alert-danger" *ngIf="errorMessage">
-            <p> {{errorMessage}} </p>
+<div class="container">
+    <div class="row" >
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+            <div style="color: brown">SIGN UP</div>
+            <br>
+            <br>
+            <div class="alert alert-danger" *ngIf="errorMessage">
+                <p> {{errorMessage}} </p>
+            </div>
+            <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" class="form" *ngIf="!isLoading">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" ngModel name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Password</label>
+                    <input type="password" id="password" class="form-control"  ngModel name="password" required minlength="6">
+                </div>
+
+                <div>
+                    <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid">Sign Up</button>  | 
+                    <button class="btn btn-primary" type="button" (click)="switchToLogin()">Switch to Login</button>
+                </div>
+            </form>
         </div>
-        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" class="form" *ngIf="!isLoading">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" class="form-control" ngModel name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="email">Password</label>
-                <input type="password" id="password" class="form-control"  ngModel name="password" required minlength="6">
-            </div>
-
-            <div>
-                <button class="btn btn-primary" type="submit" [disabled]="!authForm.valid">Sign Up</button>  | 
-                <button class="btn btn-primary" type="button" (click)="switchToLogin()">Switch to Login</button>
-            </div>
-        </form>
     </div>
 </div>

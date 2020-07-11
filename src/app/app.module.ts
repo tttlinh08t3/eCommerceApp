@@ -1,17 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// import { FormsModule } from '@angular/forms';
-import { StoreModule, Store } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { loginReducer } from './login/store/login.reducer';
 import { HeaderComponent } from './header/header.component';
 import { ProductService } from './products/product.service';
-import { FormsModule } from '@angular/forms';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { DataStorageService } from './shared/data-storage.service';
+import * as fromApp from './store/app.reducer';
+import { AuthEffects } from './auth/store/auth.effects';
+import { SharedModule } from './shared/shared.module';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,11 @@ import { DataStorageService } from './shared/data-storage.service';
   imports: [
     BrowserModule,
     HttpClientModule,
-    StoreModule.forRoot({login: loginReducer}),
-    AppRoutingModule
+    StoreModule.forRoot( fromApp.appReducer ),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({ logOnly: environment.production }),
+    AppRoutingModule,
+    SharedModule
   ],
   providers: [
     {

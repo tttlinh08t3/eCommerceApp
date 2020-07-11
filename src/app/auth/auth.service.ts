@@ -3,19 +3,25 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { AuthResponse } from './auth.model';
-import { EMAIL_EXISTS, OPERATION_NOT_ALLOWED, TOO_MANY_ATTEMPTS_TRY_LATER, EMAIL_NOT_FOUND, INVALID_PASSWORD, USER_DISABLED } from '../shared/error.message';
+import * as ErrorMessage from '../shared/error.message';
 import { User } from './user.model';
+import * as fromApp from '../store/app.reducer';
+import * as AuthActions from './store/auth.actions';
+
 const USER_DATA = 'userData';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
-    user = new BehaviorSubject<User>(null);
     API_KEY = 'AIzaSyCpLRsj_CAQSaxMDL1IXfpSjryazwL7URw';
     tokenExpirationTimer: any;
 
-    constructor(private http: HttpClient, private router: Router) {}
+    constructor(
+        private http: HttpClient,
+        private router: Router,
+        private store: Store<fromApp.AppState>) {}
 
     signup(email: string, password: string) {
         return this.http.post<AuthResponse>(
@@ -60,16 +66,19 @@ export class AuthService {
         if (!user) {
             return;
         }
-        const loadedUser = new User(user.email, user.id, user._token, new Date(user._tokenExpirationDate));
-        if (loadedUser.token) {
-            this.user.next(loadedUser);
+        if (user._token) {
+            this.store.dispatch(new AuthActions.AuthenticateSuccess({
+                email: user.email,
+                userId: user.id,
+                token: user._token,
+                expirationDate: new Date(user._tokenExpirationDate) }));
             const expiresInMillisecond = new Date(user._tokenExpirationDate).getTime() - new Date().getTime();
             this.autoLogout(expiresInMillisecond);
         }
     }
 
     logout() {
-        this.user.next(null);
+        this.store.dispatch(new AuthActions.Logout());
         this.router.navigate(['/auth']);
         localStorage.removeItem(USER_DATA);
         if (this.tokenExpirationTimer) {
@@ -93,34 +102,48 @@ export class AuthService {
             token,
             expirationDate
         );
-        this.user.next(user);
+        this.store.dispatch(new AuthActions.AuthenticateSuccess({email, userId, token, expirationDate}));
         this.autoLogout(expiresInMillisecond);
         localStorage.setItem(USER_DATA, JSON.stringify(user));
     }
+
     private handleError(errorRes: HttpErrorResponse) {
         let errorMessage = 'An unknown error occurred';
         if (!errorRes.error || !errorRes.error.error) {
             return throwError(errorMessage);
         }
         switch (errorRes.error.error.message) {
-            case EMAIL_EXISTS.errorCode:
-                errorMessage = EMAIL_EXISTS.errorMessage;
+            case ErrorMessage.EMAIL_EXISTS.errorCode:
+                errorMessage = ErrorMessage.EMAIL_EXISTS.errorMessage;
                 break;
-            case OPERATION_NOT_ALLOWED.errorCode:
-                errorMessage = OPERATION_NOT_ALLOWED.errorMessage;
+            case ErrorMessage.OPERATION_NOT_ALLOWED.errorCode:
+                errorMessage = ErrorMessage.OPERATION_NOT_ALLOWED.errorMessage;
                 break;
-            case TOO_MANY_ATTEMPTS_TRY_LATER.errorCode:
-                errorMessage = TOO_MANY_ATTEMPTS_TRY_LATER.errorMessage;
+            case ErrorMessage.TOO_MANY_ATTEMPTS_TRY_LATER.errorCode:
+                errorMessage = ErrorMessage.TOO_MANY_ATTEMPTS_TRY_LATER.errorMessage;
                 break;
-            case EMAIL_NOT_FOUND.errorCode:
-                errorMessage = EMAIL_NOT_FOUND.errorMessage;
+            case ErrorMessage.EMAIL_NOT_FOUND.errorCode:
+                errorMessage = ErrorMessage.EMAIL_NOT_FOUND.errorMessage;
                 break;
-            case INVALID_PASSWORD.errorCode:
-                errorMessage = INVALID_PASSWORD.errorMessage;
+            case ErrorMessage.INVALID_PASSWORD.errorCode:
+                errorMessage = ErrorMessage.INVALID_PASSWORD.errorMessage;
                 break;
-            case USER_DISABLED.errorCode:
-                errorMessage = USER_DISABLED.errorMessage;
+            case ErrorMessage.USER_DISABLED.errorCode:
+                errorMessage = ErrorMessage.USER_DISABLED.errorMessage;
         }
         return throwError(errorMessage);
+    }
+
+    setLogoutTimer(expiration: number) {
+        this.tokenExpirationTimer = setTimeout(() => {
+            this.store.dispatch(new AuthActions.Logout());
+        }, expiration);
+    }
+
+    clearLogoutTimer() {
+        if (this.tokenExpirationTimer) {
+            clearTimeout(this.tokenExpirationTimer);
+            this.tokenExpirationTimer = null;
+        }
     }
 }
